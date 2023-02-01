@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as Bluetooth from 'react-bluetooth';
 import './style.css';
 
-async function bluetoothsss() {
+async function pairRequest() {
   try {
     const result = await Bluetooth.requestDeviceAsync();
   
@@ -21,7 +21,7 @@ export default function App() {
 
   const handleBluetoothRequest = async () => {
     setIsBluetoothRequested(true);
-    await bluetoothsss();
+    await pairRequest();
   };
 
   return (
