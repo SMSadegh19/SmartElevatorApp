@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as Bluetooth from 'react-bluetooth';
 import './style.css';
 
 // import the fingerprintjs opensource library
