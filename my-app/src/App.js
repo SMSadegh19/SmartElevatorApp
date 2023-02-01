@@ -2,32 +2,34 @@ import * as React from 'react';
 import * as Bluetooth from 'react-bluetooth';
 import './style.css';
 
-// import the fingerprintjs opensource library
-import FingerprintJS from '@fingerprintjs/fingerprintjs';
+async function bluetoothsss() {
+  try {
+    const result = await Bluetooth.requestDeviceAsync();
+  
+    if (result.type === 'cancel') {
+      return;
+    }
+  
+    const device = result.device;
+  } catch ({ message, code }) {
+    console.log('Error:', message, code);
+  }
+}
 
 export default function App() {
-  // The fingerprint can be stored in the state or
-  // in the localstorage of the browser
+  const [isBluetoothRequested, setIsBluetoothRequested] = React.useState(false);
 
-  const [fpHash, setFpHash] = React.useState('');
+  const handleBluetoothRequest = async () => {
+    setIsBluetoothRequested(true);
+    await bluetoothsss();
+  };
 
-  // create and set the fingerprint as soon as
-  // the component mounts
-  React.useEffect(() => {
-    const setFp = async () => {
-      const fp = await FingerprintJS.load();
-
-      const { visitorId } = await fp.get();
-
-      setFpHash(visitorId);
-    };
-
-    setFp();
-  }, []);
   return (
     <div>
-      <h1>This is the fingerprint hash</h1>
-      <h3>Hash: {fpHash}</h3>
+      <h1>Connect to Bluetooth</h1>
+      {!isBluetoothRequested && (
+        <button onClick={handleBluetoothRequest}>Request Bluetooth</button>
+      )}
     </div>
   );
 }
