@@ -1,7 +1,7 @@
 {
   "name": "my-app",
   "version": "0.1.0",
-  "homepage": "https://smsadegh19.github.io/react-gh-pages",
+  "homepage": "https://smsadegh19.github.io/SmartElevatorApp/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.5",
